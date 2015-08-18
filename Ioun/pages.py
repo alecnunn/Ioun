@@ -3,6 +3,23 @@ body{color:#777}.pure-img-responsive{max-width:100%;height:auto}#layout,#menu,.m
 body{color:#777}.pure-img-responsive{max-width:100%;height:auto}#layout,#menu,.menu-link{-webkit-transition:all .2s ease-out;-moz-transition:all .2s ease-out;-ms-transition:all .2s ease-out;-o-transition:all .2s ease-out;transition:all .2s ease-out}#layout{position:relative;padding-left:0}#layout.active #menu{left:150px;width:150px}#layout.active .menu-link{left:150px}#menu,.menu-link{position:fixed;top:0;left:0}.content{margin:0 auto 50px;padding:0 2em;max-width:800px;line-height:1.6em}.header{margin:0;color:#333;text-align:center;padding:2.5em 2em 0;border-bottom:1px solid #eee}.header h1{margin:.2em 0;font-size:3em;font-weight:300}.header h2{font-weight:300;color:#ccc;padding:0;margin-top:0}.content-subhead{margin:50px 0 20px;font-weight:300;color:#888}#menu{margin-left:-150px;width:150px;bottom:0;z-index:1000;background:#191818;overflow-y:auto;-webkit-overflow-scrolling:touch}#menu a{color:#999;border:none;padding:.6em 0 .6em .6em}#menu .pure-menu,#menu .pure-menu ul{border:none;background:0 0}#menu .pure-menu .menu-item-divided,#menu .pure-menu ul{border-top:1px solid #333}#menu .pure-menu li a:focus,#menu .pure-menu li a:hover{background:#333}#menu .pure-menu-heading,#menu .pure-menu-selected{background:#1f8dd6}.menu-link,.menu-link:focus,.menu-link:hover{background:#000}#menu .pure-menu-selected a{color:#fff}#menu .pure-menu-heading{font-size:110%;color:#fff;margin:0}.menu-link{display:block;background:rgba(0,0,0,.7);font-size:10px;z-index:10;width:2em;height:auto;padding:2.1em 1.6em}.menu-link span{position:relative;display:block}.menu-link span,.menu-link span:after,.menu-link span:before{background-color:#fff;width:100%;height:.2em}.menu-link span:after,.menu-link span:before{position:absolute;margin-top:-.6em;content:" "}.menu-link span:after{margin-top:.6em}@media (min-width:48em){.content,.header{padding-left:2em;padding-right:2em}#layout{padding-left:150px;left:0}#layout.active .menu-link,#menu,.menu-link{left:150px}.menu-link{position:fixed;display:none}}@media (max-width:48em){#layout.active{position:relative;left:150px}}
 .button-error,.button-secondary,.button-success,.button-warning{color:#fff;border-radius:4px;text-shadow:0 1px 1px rgba(0,0,0,.2)}.button-success{background:#1cb841}.button-error{background:#ca3c3c}.button-warning{background:#df7514}.button-secondary{background:#42b8dd}
 """
+
+index_content = """
+<h2 class="content-subhead">What is Ioun?</h2>
+            <p>
+                Ioun is a simple to use wiki software written in Python and powered by <a href="http://bottlepy.org/">Bottle.py</a> and <a href="http://purecss.io/">PureCSS</a>
+                <br />
+                Ioun is small enough that it is self contained.  You can run your own instance by simply running the redistributable executable.
+                <br />
+                This project is also not intended to be taken 100% seriously (not yet at least).  For the most part, I am using it as a learning experience.
+            </p>"""
+
+unknown_block = """<center>
+<button class="button-success pure-button">Yes</button>
+<button class="button-error pure-button">No</button>
+</center>
+"""
+
 default = """<!DOCTYPE html>
 <html lang="en">
 <head>
@@ -15,85 +32,22 @@ default = """<!DOCTYPE html>
 	<a href="#menu" id="menuLink" class="menu-link"><span></span></a>
 	<div id="menu">
 		<div class="pure-menu">
-			<a class="pure-menu-heading">Ioun Wiki</a>
+			<a class="pure-menu-heading" href="/">Ioun Wiki</a>
 			<ul class="pure-menu-list">
-                <li class="pure-menu-item"><a href="/pages/{{ page_title }}" class="pure-menu-link">{{ page_title }}</a></li>
+			%for page in pages:
+                <li class="pure-menu-item"><a href="/wiki/{{ page[0] }}" class="pure-menu-link">{{ page[0].replace('_', ' ') }}</a></li>
+            %end
             </ul>
 		</div>
 	</div>
 	<div id="main">
 		<div class="header">
 			<h1>{{ page_title }}</h1>
-            <h2>{{ page_title }}</h2>
+            <h2>{{ page_subtitle }}</h2>
         </div>
 
         <div class="content">
-            <h2 class="content-subhead">What is Ioun?</h2>
-            <p>
-                Ioun is a simple to use wiki software written in Python and powered by <a href="http://bottlepy.org/">Bottle.py</a> and <a href="http://purecss.io/">PureCSS</a>
-                <br />
-                Ioun is small enough that it is self contained.  You can run your own instance by simply running the redistributable executable.
-            </p>
-        </div>
-	</div>
-</div>
-<script>
-(function (window, document) {
-    var layout   = document.getElementById('layout'),
-        menu     = document.getElementById('menu'),
-        menuLink = document.getElementById('menuLink');
-    function toggleClass(element, className) {
-        var classes = element.className.split(/\s+/),
-            length = classes.length,
-            i = 0;
-        for(; i < length; i++) {
-          if (classes[i] === className) {
-            classes.splice(i, 1);
-            break;
-          }
-        }
-        if (length === classes.length) {
-            classes.push(className);
-        }
-        element.className = classes.join(' ');
-    }
-    menuLink.onclick = function (e) {
-        var active = 'active';
-        e.preventDefault();
-        toggleClass(layout, active);
-        toggleClass(menu, active);
-        toggleClass(menuLink, active);
-    };
-}(this, this.document));
-</script>
-</body>
-</html>
-"""
-
-unknown = """<!DOCTYPE html>
-<html lang="en">
-<head>
-    <title>{{ page_title }}</title>
-    <style>{{ css }}</style>
-</head>
-
-<body>
-<div id="layout">
-	<a href="#menu" id="menuLink" class="menu-link"><span></span></a>
-	<div id="menu">
-		<div class="pure-menu">
-			<a class="pure-menu-heading">Ioun Wiki</a>
-			<ul class="pure-menu-list">
-                <li class="pure-menu-item"><a href="/pages/{{ page_title }}" class="pure-menu-link">{{ page_title}}</a></li>
-            </ul>
-		</div>
-	</div>
-	<div id="main">
-		<div class="header">
-			<h1>{{ page_title }}</h1>
-            <h2>This page does not exist.  Would you like to create it?</h2>
-            <button class="button-success pure-button">Yes</button>
-            <button class="button-error pure-button">No</button>
+            {{! content }}
         </div>
 	</div>
 </div>
