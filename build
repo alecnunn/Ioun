@@ -1,0 +1,9 @@
+#!/bin/sh
+rm -f wiki.zip wiki
+cd Ioun
+zip -r -q ../wiki.zip *
+cd ..
+echo '#!/usr/bin/env python' | cat - wiki.zip > wiki
+rm -f wiki.zip
+chmod +x wiki
+echo 'Finished building'
