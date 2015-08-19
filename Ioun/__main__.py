@@ -4,7 +4,7 @@ import pages
 import common
 import database
 
-from bottle import Bottle, route, run, template, request, post, get, redirect, response
+from bottle import Bottle, route, run, template, request, post, get, redirect, response, error
 import mistune
 
 app = Bottle()
@@ -57,4 +57,4 @@ else:
         print("You must initialize the database first!")
         sys.exit()
     print("Ioun is running on: http://0.0.0.0:8080")
-    run(app, host='0.0.0.0', port=8080, quiet=True)
+    run(app, host='0.0.0.0', port=8080, quiet=False)
