@@ -1,7 +1,7 @@
 # Ioun
 
 Ioun is a simple to use wiki software written in Python and powered by [Bottle.py](http://www.bottlepy.org/) and 
-[PureCSS](http://www.purecss.io/)
+[PureCSS](http://www.purecss.io/) and several other Python libraries.  For their license information, check the `licenses` folder
 
 Ioun is small enough that it is self contained.  You can run your own instance by simply running the redistributable executable.
 
