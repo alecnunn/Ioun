@@ -16,7 +16,9 @@ create table 'categories' (
 create table 'pages' (
     'id' integer primary key autoincrement,
     'title' varchar(50),
-    'body' text
+    'subtitle' varchar(50),
+    'body' text,
+    'cat' int
 );
 
 insert into 'users' (
@@ -27,11 +29,11 @@ insert into 'users' (
     'pbkdf2:sha1:1000$p6oKPxJK$6e59d6338f1b44dcec1ead129d6238d1d3e6c206'
 );
 
-insert into 'categories' (
-    'name'
-) values (
-    'Scripting'
-);
+insert into 'categories' ('name') values ('Administration');
+insert into 'categories' ('name') values ('How To');
+insert into 'categories' ('name') values ('Reference');
+insert into 'categories' ('name') values ('Scripting');
+insert into 'categories' ('name') values ('Tools');
 """
 
 help_txt = """Ioun is a simple wiki software written in Python.
