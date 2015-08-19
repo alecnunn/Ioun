@@ -7,13 +7,11 @@ def get_db():
 def init_db():
     import os
     import common
-    try:
+    if os.path.isfile('ioun.db'):
         os.remove('ioun.db')
-        db = get_db()
-        db.executescript(common.init_sql)
-        db.close()
-    except:
-        pass
+    db = get_db()
+    db.executescript(common.init_sql)
+    db.close()
 
 
 def query(q, args=(), one=False):
