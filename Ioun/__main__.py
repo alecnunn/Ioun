@@ -9,17 +9,19 @@ import mistune
 
 app = Bottle()
 
+
 @app.route('/')
 def index():
     return template(pages.default, page_title="Ioun", page_subtitle="A Simple Wiki Platform", pages=database.get_pages(), content=pages.index_content, css=pages.css)
+
 
 @app.route('/wiki/<title>')
 def render_page(title):
     page = database.get_page(title)
     if page:
         return template(pages.default, page_title=page[0].replace('_', ' '), page_subtitle=page[1], pages=database.get_pages(), content=mistune.markdown(page[2]), css=pages.css)
-
     return template(pages.default, page_title=title.replace('_', ' '), page_subtitle="Unknown page.  Would you like to create it?", pages=database.get_pages(), content=pages.unknown_block.format(title), css=pages.css)
+
 
 @app.get('/edit/<title>')
 def edit_page(title):
@@ -29,11 +31,13 @@ def edit_page(title):
     database.create_page(title)
     return template(pages.edit, page_title=title.replace('_', ' '), page_subtitle="", pages=database.get_pages(), css=pages.css, body="")
 
+
 @app.post('/edit/<title>')
 def save_page(title):
     msg = (request.forms.get('title'), request.forms.get('subtitle'), request.forms.get('content'))
     database.save_page(msg)
     return redirect('/wiki/{0}'.format(title))
+
 
 @app.route('/delete/<title>')
 def delete_page(title):
@@ -55,8 +59,9 @@ if len(sys.argv) > 1:
         print("[+] Database Initialized")
         database.init_db()
         sys.exit()
-    elif sys.argv[1] == '-l' or sys.argv[1] == '--license':
-        print(common.license)
+    else:
+        print("Unknown option.  Use '-h' to display the available options.")
+        sys.exit()
 else:
     if not os.path.isfile('ioun.db'):
         print("You must initialize the database first!")

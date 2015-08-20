@@ -14,10 +14,7 @@ Ioun is currently on version {0}
 To use Ioun, simply run the `ioun` executable
 Available options:
  -h / --help    : Print out this help message
- -i / --init    : Initializes the database [1]
+ -i / --init    : Initializes the database [*]
  -v / --version : Print out current version of Ioun
- -l / --license : Print out the license that Ioun is distributed under
 
-[1] Initializing the database, but it will wipe your current database""".format(__version__)
-
-license = 'Ioun is released under the LGPL license'
+[*] Initializing the database, but it will wipe your current database""".format(__version__)
