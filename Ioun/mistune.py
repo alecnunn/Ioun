@@ -747,7 +747,7 @@ class Renderer(object):
         :param body: body part of the table.
         """
         return (
-            '<table>\n<thead>%s</thead>\n'
+            '<table class="pure-table pure-table-bordered">\n<thead>%s</thead>\n'
             '<tbody>\n%s</tbody>\n</table>\n'
         ) % (header, body)
 
@@ -840,6 +840,10 @@ class Renderer(object):
             link = ''
         if not title:
             return '<a href="%s">%s</a>' % (link, text)
+        if link.startswith('http'):
+            return '<a href="%s">%s</a>' % (link, text)
+        elif not link.startswith('http'):
+            return '<a href="/wiki/%s">%s</a>' % (link, text)
         title = escape(title, quote=True)
         return '<a href="%s" title="%s">%s</a>' % (link, title, text)
 
