@@ -34,3 +34,6 @@ def create_page(title):
 
 def save_page(contents=()):
     return query('update pages set title=?, subtitle=?, body=? where title=?', [contents[0].replace(' ', '_'), contents[1], contents[2], contents[0].replace(' ', '_')])
+
+def delete_page(title):
+    return query('delete from pages where title=?', [title], one=True)

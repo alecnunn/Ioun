@@ -141,6 +141,9 @@ edit = """
                 <textarea class="pure-input-1" rows="15" name="content">{{ body }}</textarea>
                 <button type="submit" class="pure-button pure-input-1 pure-button-primary">Save Page</button>
             </form>
+            <div id="foo">
+                <a href="/delete/{{ page_title.replace(' ', '_') }}"><button class="pure-button pure-input-1 button-error">Delete Page</button></a>
+            </div>
         </div>
 	</div>
 </div>

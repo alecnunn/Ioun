@@ -35,6 +35,11 @@ def save_page(title):
     database.save_page(msg)
     return redirect('/wiki/{0}'.format(title))
 
+@app.route('/delete/<title>')
+def delete_page(title):
+    database.delete_page(title)
+    return redirect('/')
+
 if __name__ == "__main__":
     import sys
     import os
