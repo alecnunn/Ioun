@@ -4,15 +4,14 @@ body{color:#777}.pure-img-responsive{max-width:100%;height:auto}#layout,#menu,.m
 #foo {position: fixed;bottom: 0;right: 0;}.pure-input-1 {line-height:12px;font-family: monospace;}
 """
 
-index_content = """
-<h2 class="content-subhead">What is Ioun?</h2>
-            <p>
-                Ioun is a simple to use wiki software written in Python and powered by <a href="http://bottlepy.org/">Bottle.py</a> and <a href="http://purecss.io/">PureCSS</a>
-                <br />
-                Ioun is small enough that it is self contained.  You can run your own instance by simply running the redistributable executable.
-                <br />
-                This project is also not intended to be taken 100% seriously (not yet at least).  For the most part, I am using it as a learning experience.
-            </p>"""
+index_content = """<h2 class="content-subhead">What is Ioun?</h2>
+<p>
+Ioun is a simple to use wiki software written in Python and powered by <a href="http://bottlepy.org/">Bottle.py</a> and <a href="http://purecss.io/">PureCSS</a>
+<br />
+Ioun is small enough that it is self contained.  You can run your own instance by simply running the redistributable executable.
+<br />
+This project is also not intended to be taken 100% seriously (not yet at least).  For the most part, I am using it as a learning experience.
+</p>"""
 
 unknown_block = """<center>
 <a href="/edit/{0}"><button class="button-success pure-button">Yes</button></a>
@@ -182,3 +181,13 @@ edit = """
 </body>
 </html>
 """
+
+sitemap = """<?xml version="1.0" encoding="UTF-8"?>
+<urls>
+% for r in results:
+    <url>
+        <title>{{ r[0].replace('_', ' ') }}</title>
+        <loc>http://localhost:8080/wiki/{{ r[0] }}</loc>
+    </url>
+% end
+</urls>"""

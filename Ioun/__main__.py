@@ -46,6 +46,13 @@ def delete_page(title):
     return redirect('/')
 
 
+@app.route('/sitemap.xml')
+def sitemap():
+    res = database.query('select title from pages')
+    response.content_type = 'application/xml'
+    return template(pages.sitemap, results=res)
+
+
 if __name__ == "__main__":
     import sys
     import os
