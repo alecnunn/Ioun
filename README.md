@@ -19,4 +19,7 @@ This project is also not intended to be taken 100% seriously (not yet at least).
 
 # License
 
-Ioun is released under the LGPL v3 license.
+Ioun is released under the LGPL v3 license with a modification (listed below).
+
+If Ioun is used in a private network that is not accessible through public networks and modifications have been made to
+the source, you do not have to disclose your modifications.
