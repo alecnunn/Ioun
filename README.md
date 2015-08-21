@@ -7,6 +7,16 @@ Ioun is small enough that it is self contained.  You can run your own instance b
 
 This project is also not intended to be taken 100% seriously (not yet at least).  For the most part, I am using it as a learning experience.
 
+# How To Use
+- First download or clone the latest source
+  - ```git clone https://github.com/alecnunn/Ioun.git```
+- Run the build script
+  - ```./build```
+- Initialize the database
+  - ```./ioun --init```
+- Run the server
+  - ```./ioun```
+
 # License
 
 Ioun is released under the LGPL v3 license.

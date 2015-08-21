@@ -44,27 +44,27 @@ def delete_page(title):
     database.delete_page(title)
     return redirect('/')
 
+
 if __name__ == "__main__":
     import sys
     import os
-
-if len(sys.argv) > 1:
-    if sys.argv[1] == '-v' or sys.argv[1] == '--version':
-        print("Ioun v{0}".format(common.__version__))
-        sys.exit()
-    elif sys.argv[1] == '-h' or sys.argv[1] == '--help':
-        print(common.help_txt)
-        sys.exit()
-    elif sys.argv[1] == '-i' or sys.argv[1] == '--init':
-        print("[+] Database Initialized")
-        database.init_db()
-        sys.exit()
+    if len(sys.argv) > 1:
+        if sys.argv[1] == '-v' or sys.argv[1] == '--version':
+            print("Ioun v{0}".format(common.__version__))
+            sys.exit()
+        elif sys.argv[1] == '-h' or sys.argv[1] == '--help':
+            print(common.help_txt)
+            sys.exit()
+        elif sys.argv[1] == '-i' or sys.argv[1] == '--init':
+            print("[+] Database Initialized")
+            database.init_db()
+            sys.exit()
+        else:
+            print("Unknown option.  Use '-h' to display the available options.")
+            sys.exit()
     else:
-        print("Unknown option.  Use '-h' to display the available options.")
-        sys.exit()
-else:
-    if not os.path.isfile('ioun.db'):
-        print("You must initialize the database first!")
-        sys.exit()
-    print("Ioun is running on: http://0.0.0.0:8080")
-    run(app, host='0.0.0.0', port=8080, quiet=False)
+        if not os.path.isfile('ioun.db'):
+            print("You must initialize the database first!")
+            sys.exit()
+        print("Ioun is running on: http://0.0.0.0:8080")
+        run(app, host='0.0.0.0', port=8080, quiet=False)
