@@ -1,3 +1,9 @@
+"""
+Common strings used throughout the entire program.  I will try to
+keep the longer blocks of text and strings in here simply to keep
+the other code files clean.
+"""
+
 __author__ = 'Alec Nunn'
 __version__ = '1.0'
 
