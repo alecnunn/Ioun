@@ -1,4 +1,4 @@
-# Ioun
+![](https://raw.githubusercontent.com/alecnunn/Ioun/master/resources/ioun.png)
 
 Ioun is a simple to use wiki software written in Python and powered by [Bottle.py](http://www.bottlepy.org/) and 
 [PureCSS](http://www.purecss.io/) and several other Python libraries.  For their license information, check the `licenses` folder
