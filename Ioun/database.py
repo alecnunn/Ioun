@@ -41,14 +41,14 @@ def get_pages():
     Queries the database and returns a list of every page consisting of
     the page names
     """
-    return query('select title from pages')
+    return query('select title from pages where visible=1')
 
 
 def get_page(title):
     """
     Queries the database and returns the contents of an individual page
     """
-    return query('select title, subtitle, body from pages where title=?', [title], one=True)
+    return query('select title, subtitle, body, visible from pages where title=?', [title], one=True)
 
 
 def create_page(title):
@@ -65,7 +65,7 @@ def save_page(contents=()):
     """
     Updates an existing entry in the database with a tuple of values.
     """
-    return query('update pages set title=?, subtitle=?, body=? where title=?', [contents[0].replace(' ', '_'), contents[1], contents[2], contents[0].replace(' ', '_')])
+    return query('update pages set title=?, subtitle=?, body=?, visible=? where title=?', [contents[0].replace(' ', '_'), contents[1], contents[2], contents[3], contents[0].replace(' ', '_')])
 
 
 def delete_page(title):

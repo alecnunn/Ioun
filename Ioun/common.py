@@ -11,7 +11,8 @@ init_sql = """create table 'pages' (
     'id' integer primary key autoincrement,
     'title' varchar(50) unique,
     'subtitle' varchar(50),
-    'body' text
+    'body' text,
+    'visible' integer
 );
 """
 

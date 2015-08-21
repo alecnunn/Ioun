@@ -138,6 +138,9 @@ edit = """
                         <option value="5">Tools</option>
                     </select> --!>
                 </fieldset>
+                <label for="is_visible" class="pure-checkbox">
+                    <input id="is_visible" type="checkbox" name="visible" {{ "" if checked==0 else "checked" }}> Is Page Visible?
+                </label>
                 <textarea class="pure-input-1" rows="30" name="content">{{ body }}</textarea>
                 <button type="submit" class="pure-button pure-input-1 pure-button-primary">Save Page</button>
             </form>

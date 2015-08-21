@@ -3,7 +3,6 @@
 The following are listed based upon priority (at least my personal priorities)
 
 - Better URI routing/handling
-- Allow "Sub Pages"
 - Simple site-map generation
 - Page versioning/history
 - Better design

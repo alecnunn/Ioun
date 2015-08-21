@@ -27,14 +27,15 @@ def render_page(title):
 def edit_page(title):
     page = database.get_page(title)
     if page:
-        return template(pages.edit, page_title=page[0].replace('_', ' '), page_subtitle=page[1], body=page[2], pages=database.get_pages(), css=pages.css)
+        return template(pages.edit, page_title=page[0].replace('_', ' '), page_subtitle=page[1], checked=page[3], body=page[2], pages=database.get_pages(), css=pages.css)
     database.create_page(title)
-    return template(pages.edit, page_title=title.replace('_', ' '), page_subtitle="", pages=database.get_pages(), css=pages.css, body="")
+    return template(pages.edit, page_title=title.replace('_', ' '), page_subtitle="", checked=1, pages=database.get_pages(), css=pages.css, body="")
 
 
 @app.post('/edit/<title>')
 def save_page(title):
-    msg = (request.forms.get('title'), request.forms.get('subtitle'), request.forms.get('content'))
+    visible = 1 if request.forms.get('visible') == 'on' else 0
+    msg = (request.forms.get('title'), request.forms.get('subtitle'), request.forms.get('content'), visible)
     database.save_page(msg)
     return redirect('/wiki/{0}'.format(title))
 
