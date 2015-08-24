@@ -64,6 +64,10 @@ def create_page(title):
 def save_page(contents=()):
     """
     Updates an existing entry in the database with a tuple of values.
+    contents[0] => title
+    contents[1] => subtitle
+    contents[2] => body
+    contents[3] => visible
     """
     return query('update pages set title=?, subtitle=?, body=?, visible=? where title=?', [contents[0].replace(' ', '_'), contents[1], contents[2], contents[3], contents[0].replace(' ', '_')])
 

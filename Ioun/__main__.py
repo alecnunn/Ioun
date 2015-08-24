@@ -15,7 +15,7 @@ def index():
     return template(pages.default, page_title="Ioun", page_subtitle="A Simple Wiki Platform", pages=database.get_pages(), content=pages.index_content, css=pages.css)
 
 
-@app.route('/wiki/<title>')
+@app.route('/wiki/<title:path>')
 def render_page(title):
     page = database.get_page(title)
     if page:
@@ -23,7 +23,7 @@ def render_page(title):
     return template(pages.default, page_title=title.replace('_', ' '), page_subtitle="Unknown page.  Would you like to create it?", pages=database.get_pages(), content=pages.unknown_block.format(title), css=pages.css)
 
 
-@app.get('/edit/<title>')
+@app.get('/edit/<title:path>')
 def edit_page(title):
     page = database.get_page(title)
     if page:
@@ -32,7 +32,7 @@ def edit_page(title):
     return template(pages.edit, page_title=title.replace('_', ' '), page_subtitle="", checked=1, pages=database.get_pages(), css=pages.css, body="")
 
 
-@app.post('/edit/<title>')
+@app.post('/edit/<title:path>')
 def save_page(title):
     visible = 1 if request.forms.get('visible') == 'on' else 0
     msg = (request.forms.get('title'), request.forms.get('subtitle'), request.forms.get('content'), visible)
@@ -52,6 +52,46 @@ def sitemap():
     response.content_type = 'application/xml'
     return template(pages.sitemap, results=res)
 
+
+@app.route('/api/all')
+def testAPI():
+    from json import dumps
+    response.content_type = 'application/json'
+    return dumps([{"ip": "192.168.1.1", "status": "up"}, {"ip": "127.0.0.1", "status": "up"}, {"ip": "192.168.1.254", "status": "down"}])
+
+
+@app.route('/api/test')
+def testAPI():
+    h = """
+<html>
+<head>
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.3/jquery.min.js"></script>
+</head>
+<body>
+<script>
+function execute() {
+    $.ajax({
+        type: 'GET',
+        url: '/api/all',
+        dataType: 'json',
+    })
+    .done(function(result) {
+        console.log(result);
+        for(var i in result) {
+            $('body').append(result[i]['ip'] + ' -> ' + result[i]['status'] + '<br />');
+        }
+    });
+    setTimeout(execute, 5000);
+}
+
+$(document).ready(function() {
+    setTimeout(execute, 5000);
+});
+</script>
+</body>
+</html>
+    """
+    return h
 
 if __name__ == "__main__":
     import sys
