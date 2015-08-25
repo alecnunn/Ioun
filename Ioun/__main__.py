@@ -53,46 +53,6 @@ def sitemap():
     return template(pages.sitemap, results=res)
 
 
-@app.route('/api/all')
-def testAPI():
-    from json import dumps
-    response.content_type = 'application/json'
-    return dumps([{"ip": "192.168.1.1", "status": "up"}, {"ip": "127.0.0.1", "status": "up"}, {"ip": "192.168.1.254", "status": "down"}])
-
-
-@app.route('/api/test')
-def testAPI():
-    h = """
-<html>
-<head>
-<script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.3/jquery.min.js"></script>
-</head>
-<body>
-<script>
-function execute() {
-    $.ajax({
-        type: 'GET',
-        url: '/api/all',
-        dataType: 'json',
-    })
-    .done(function(result) {
-        console.log(result);
-        for(var i in result) {
-            $('body').append(result[i]['ip'] + ' -> ' + result[i]['status'] + '<br />');
-        }
-    });
-    setTimeout(execute, 5000);
-}
-
-$(document).ready(function() {
-    setTimeout(execute, 5000);
-});
-</script>
-</body>
-</html>
-    """
-    return h
-
 if __name__ == "__main__":
     import sys
     import os
