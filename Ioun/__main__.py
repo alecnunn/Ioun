@@ -40,7 +40,7 @@ def save_page(title):
     return redirect('/wiki/{0}'.format(title))
 
 
-@app.route('/delete/<title>')
+@app.route('/delete/<title:path>')
 def delete_page(title):
     database.delete_page(title)
     return redirect('/')

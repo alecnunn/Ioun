@@ -1,6 +1,7 @@
 #!/bin/sh
 rm -f wiki.zip ioun
 cd Ioun
+rm -f *.pyc
 zip -r -q ../wiki.zip *
 cd ..
 echo '#!/usr/bin/env python' | cat - wiki.zip > wiki

@@ -128,14 +128,6 @@ edit = """
                 <fieldset class="pure-group">
                     <input type="text" class="pure-input-1" name="title" placeholder="Page Title" value="{{ page_title }}">
                     <input type="text" class="pure-input-1" name="subtitle" placeholder="Sub Title" value="{{ page_subtitle }}">
-                    <!-- <label for="cat">Category</label>
-                    <select id="cat" class="pure-input-1" name="cat">
-                        <option value="1">Administration</option>
-                        <option value="2">How To</option>
-                        <option value="3">Reference</option>
-                        <option value="4">Scripting</option>
-                        <option value="5">Tools</option>
-                    </select> --!>
                 </fieldset>
                 <label for="is_visible" class="pure-checkbox">
                     <input id="is_visible" type="checkbox" name="visible" {{ "" if checked==0 else "checked" }}> Is Page Visible?
