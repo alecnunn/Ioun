@@ -3,7 +3,7 @@
 Ioun is a simple to use wiki software written in Python and powered by [Bottle.py](http://www.bottlepy.org/) and 
 [PureCSS](http://www.purecss.io/) and several other Python libraries.  For their license information, check the `licenses` folder
 
-Ioun is small enough that it is self contained.  You can run your own instance by simply running the redistributable executable.
+Ioun is small enough that it is self contained.  You can run your own instance by simply running the redistributable executable.  The reason I wanted it to be self contained, (including CSS, HTML, etc) is that I wanted to be able to use this offline or on segregated networks that do not have Internet access.  If you're willing to load the CSS from the Internet, I'm sure you could cut down the "compiled" size by even more.
 
 This project is also not intended to be taken 100% seriously (not yet at least).  For the most part, I am using it as a learning experience.
 
